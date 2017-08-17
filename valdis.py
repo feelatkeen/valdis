@@ -167,7 +167,7 @@ def main():
                     adminwrite.close()
                     admread = open("banned.txt", "r")
                     adminusers = admread.read()
-                    adminusers = admusers.split(", ")
+                    adminusers = adminusers.split(", ")
                     admread.close()
                 else:
                     vk.messages.send(peer_id=event.peer_id, message="[id" + event.user_id + "|поздравляем] у вас бан!")
@@ -194,7 +194,7 @@ def main():
                     adminwrite.close()
                     admread = open("banned.txt", "r")
                     adminusers = banread.read()
-                    adminusers = admusers.split(", ")
+                    adminusers = adminusers.split(", ")
                     admread.close()
                 else:
                     vk.messages.send(peer_id=event.peer_id, message="[id" + event.user_id + "|поздравляем] у вас бан!")
