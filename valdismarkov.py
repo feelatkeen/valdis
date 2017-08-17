@@ -17,7 +17,8 @@ def generate(chain, length):
         next_pairs = chain[current_word].items()
         next_words, weights = list(zip(*next_pairs))
         current_word = random.choices(next_words, weights)[0]
-        ret.append(current_word)
+        if current_word not in ret:
+            ret.append(current_word)
     return ' '.join(ret)
 
 #спасибо Zagrebelin за скрипт
