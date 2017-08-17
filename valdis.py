@@ -10,9 +10,13 @@ import pdb
 print("VK API loaded!")
 spampoint = 0
 bannedusers = open("banned.txt", "r")
+adminusers = open("admins.txt", "r")
 banusers = bannedusers.read()
 banusers = banusers.split(", ")
 bannedusers.close()
+adminusers = adminusers.read()
+adminusers = adminusers.split(", ")
+adminusers.close()
 curtime = datetime.datetime.now()
 curseconds = (curtime-datetime.datetime(1970,1,1)).total_seconds()
 from vk_api.longpoll import VkLongPoll, VkEventType
@@ -69,7 +73,7 @@ def main():
                     worddict = dict([(wordlist[i], wordlist[i+1]) for i in range(0, len(wordlist) - 1, 2) ])
                     shizalength = random.randint(0,20)
                     sent_model = make_markov_model(wordlist)
-                    shizasent = generate_random_sentence(shizalength, sent_model)
+                    shizasent = generate_random_sentence(shizalength, sent_model)он
                     if shizasent == "" or shizasent == " ":
                         vk.messages.send(peer_id=event.peer_id, message="простите пожалуйста, я не знаю что сказать. попробуйте еще раз. извините за доставленные неудобства")
                     else:
@@ -98,7 +102,7 @@ def main():
                             vk.messages.send(peer_id=event.peer_id, attachment="doc"+str(sentprikol[0]['owner_id'])+ "_" + str(sentprikol[0]['id']))
                             
             elif event.text.lower() == "шизик выпей амнезиак":
-                if event.user_id == "320502491":
+                if event.user_id in adminusers:
                     vk.messages.send(peer_id=event.peer_id, message="*выпил*")
                     loadwordlist = open("shiza.txt", "w")
                     loadwordlist.write("")
@@ -107,7 +111,7 @@ def main():
                     print(event.user_id)
                     vk.messages.send(peer_id=event.peer_id, message="иди нахуй!!!")
             elif event.text.lower() == "шизик ебани себе по голове":
-                if event.user_id == "320502491":
+                if event.user_id in adminusers:
                     vk.messages.send(peer_id=event.peer_id, message="*ебанул*")
                     loadwordlist = open("shiza.txt", "r+")
                     prikolwordlist = loadwordlist.read()
@@ -137,7 +141,7 @@ def main():
                     vk.messages.send(peer_id=event.peer_id, message="иди нахуй!!!")
             elif "шизик убить " in event.text.lower():
                 usercmd = event.text.lower().replace("шизик убить ", "")
-                if event.user_id == "320502491":
+                if event.user_id in adminusers:
                     vk.messages.send(peer_id=event.peer_id, message="[id" + usercmd + "|шайтан] убить")
                     banread = open("banned.txt", "r")
                     banusers = banread.read()
@@ -151,9 +155,62 @@ def main():
                     banread.close()
                 else:
                     vk.messages.send(peer_id=event.peer_id, message="иди нахуй!!!")
+            elif "шизик админ " in event.text.lower():
+                usercmd = event.text.lower().replace("шизик админ ", "")
+                if event.user_id == "320502491":
+                    vk.messages.send(peer_id=event.peer_id, message="[id" + usercmd + "|поздравляем] у вас админка!")
+                    admread = open("admins.txt", "r")
+                    adminusers = admread.read()
+                    admread.close()
+                    adminwrite = open("admin.txt", "w")
+                    adminwrite.write(adminusers + usercmd + ", ")
+                    adminwrite.close()
+                    admread = open("banned.txt", "r")
+                    adminusers = banread.read()
+                    adminusers = admusers.split(", ")
+                    admread.close()
+                else:
+                    vk.messages.send(peer_id=event.peer_id, message="[id" + event.user_id + "|поздравляем] у вас бан!")
+                    banread = open("banned.txt", "r")
+                    banusers = banread.read()
+                    banread.close()
+                    banwrite = open("banned.txt", "w")
+                    banwrite.write(banusers + event.user_id + ", ")
+                    banwrite.close()
+                    banread = open("banned.txt", "r")
+                    banusers = banread.read()
+                    banusers.split(", ")
+                    banread.close()
+            elif "шизик антиадмин " in event.text.lower():
+                usercmd = event.text.lower().replace("шизик антиадмин ", "")
+                if event.user_id == "320502491":
+                    vk.messages.send(peer_id=event.peer_id, message="[id" + usercmd + "|поздравляем] у вас нет админки)")
+                    admread = open("admins.txt", "r")
+                    adminusers = admread.read()
+                    adminusers = adminusers.replace(usercmd+", ", "")
+                    admread.close()
+                    adminwrite = open("admin.txt", "w")
+                    adminwrite.write(adminusers)
+                    adminwrite.close()
+                    admread = open("banned.txt", "r")
+                    adminusers = banread.read()
+                    adminusers = admusers.split(", ")
+                    admread.close()
+                else:
+                    vk.messages.send(peer_id=event.peer_id, message="[id" + event.user_id + "|поздравляем] у вас бан!")
+                    banread = open("banned.txt", "r")
+                    banusers = banread.read()
+                    banread.close()
+                    banwrite = open("banned.txt", "w")
+                    banwrite.write(banusers + event.user_id + ", ")
+                    banwrite.close()
+                    banread = open("banned.txt", "r")
+                    banusers = banread.read()
+                    banusers.split(", ")
+                    banread.close()
             elif "шизик воскреси " in event.text.lower():
                 usercmd = event.text.lower().replace("шизик воскреси ", "")
-                if event.user_id == "320502491":
+                if event.user_id in adminusers:
                     vk.messages.send(peer_id=event.peer_id, message="[id" + usercmd + "|нешайтан] восресить")
                     banread = open("banned.txt", "r")
                     banusers = banread.read()
