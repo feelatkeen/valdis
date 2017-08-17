@@ -73,7 +73,7 @@ def main():
                     worddict = dict([(wordlist[i], wordlist[i+1]) for i in range(0, len(wordlist) - 1, 2) ])
                     shizalength = random.randint(0,20)
                     sent_model = make_markov_model(wordlist)
-                    shizasent = generate_random_sentence(shizalength, sent_model)он
+                    shizasent = generate_random_sentence(shizalength, sent_model)
                     if shizasent == "" or shizasent == " ":
                         vk.messages.send(peer_id=event.peer_id, message="простите пожалуйста, я не знаю что сказать. попробуйте еще раз. извините за доставленные неудобства")
                     else:
