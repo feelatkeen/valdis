@@ -28,6 +28,7 @@ def auth_handler():
 
 def main():
     global banusers
+    global adminusers
     global spampoint
     login, password = "79851081623", "MemeFox123"
     vk_session = vk_api.VkApi(login, password, auth_handler=auth_handler)
