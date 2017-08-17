@@ -10,13 +10,13 @@ import pdb
 print("VK API loaded!")
 spampoint = 0
 bannedusers = open("banned.txt", "r")
-adminusers = open("admins.txt", "r")
+admusers = open("admins.txt", "r")
 banusers = bannedusers.read()
 banusers = banusers.split(", ")
 bannedusers.close()
 adminusers = adminusers.read()
 adminusers = adminusers.split(", ")
-adminusers.close()
+admusers.close()
 curtime = datetime.datetime.now()
 curseconds = (curtime-datetime.datetime(1970,1,1)).total_seconds()
 from vk_api.longpoll import VkLongPoll, VkEventType
