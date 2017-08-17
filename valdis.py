@@ -55,6 +55,11 @@ def main():
                     vk.messages.send(peer_id=event.peer_id, message="кинь заявку потом еще раз попробуй)")
             if event.text.lower() == "шизик ping":
                 vk.messages.send(peer_id=event.peer_id, message="pong") 
+            elif event.text.lower() == "шизик админы":
+                admingstring = ""
+                for a in adminusers:
+                    adminstring = adminstring + a + " "
+                vk.messages.send(peer_id=event.peer_id, message="админы: " + adminusers)
             elif event.text.lower() == "шизик помощь":
                 vk.messages.send(peer_id=event.peer_id, message="---START---\nшизик бот v1.0\ntype: BETA\ncodename: VALDIS\nprefix: шизик\nКоманды:\nшизофазия - бред шизика (слова он черпает от вас!)\nшизофазия вслух - голос шизика! (тоже самое что и шизофазия но в виде голосового сообщения)\nдобавь меня - бот вас добавить (сначала киньте заявку)\nдонат - все деньги идут на хостинг! а еще вас пропустят в рай без очереди ;)\n---END---")
             elif event.text.lower() == "шизик донат":
