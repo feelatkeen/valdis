@@ -166,7 +166,7 @@ def main():
                     adminwrite.write(adminusers + usercmd + ", ")
                     adminwrite.close()
                     admread = open("banned.txt", "r")
-                    adminusers = banread.read()
+                    adminusers = admread.read()
                     adminusers = admusers.split(", ")
                     admread.close()
                 else:
