@@ -1,42 +1,23 @@
-from valdict import valdisdict
 import random
-from collections import deque
-import re
+from collections import defaultdict, Counter
 
-def make_markov_model(data):
-	markov_model = dict()
-	for i in range(0, len(data)-1):
-		if data[i] in markov_model:
-			markov_model[data[i]].update([data[i+1]])
-		else:
-			print(data[i+1])
-			markov_model[data[i]] = valdisdict([data[i+1]])
-	return markov_model
+def build_chain(words):
+    """ build Markov chain from the list of words """
+    chain = defaultdict(Counter)
+    for idx, current_word in enumerate(words[:-1]):
+        next_word = words[idx+1]
+        chain[current_word].update([next_word])
+    return chain
 
-def make_higher_order_markov_model(order,data):
-	markov_model = dict()
+def generate(chain, length):
+    """ generate new text given length from the chain """
+    current_word = random.choice(list(chain.keys()))
+    ret = [current_word]
+    for _ in range(length):
+        next_pairs = chain[current_word].items()
+        next_words, weights = list(zip(*next_pairs))
+        current_word = random.choices(next_words, weights)[0]
+        ret.append(current_word)
+    return ' '.join(ret)
 
-	for i in range(0, len(data)-order):
-		window = tuple(data[i: i+order])
-		if window in markov_model:
-			markov_model[window].update([data[i+order]])
-		else:
-			print(data[i+order])
-			markov_model[window] = valdisdict(iterable=[data[i+order]])
-	return markov_model
-
-def generate_random_start(model):
-	return random.choice(list(model.keys()))
-def generate_random_sentence(length, markov_model):
-	current_wrd = generate_random_start(markov_model)
-	print(markov_model[current_wrd])
-	sentence = [current_wrd]
-	for i in range(0, length):
-		current_dictogram = markov_model[current_wrd]
-		random_weighted_word = current_dictogram.return_weighted_random_word()
-		current_wrd = random_weighted_word
-		if current_wrd not in sentence:
-			sentence.append(current_wrd)
-	sentence[0] = sentence[0].capitalize()
-	return ' '.join(sentence)
-	return sentence
+#спасибо Zagrebelin за скрипт
