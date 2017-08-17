@@ -80,8 +80,9 @@ def main():
                     if shizasent == "" or shizasent == " ":
                         vk.messages.send(peer_id=event.peer_id, message="простите пожалуйста, я не знаю что сказать. попробуйте еще раз. извините за доставленные неудобства")
                     else:
-                        shizasent = shizasent.replace("&quot", '')
-                        shizasent = shizasent.replace("&amp", "")
+                        shizasent = shizasent.replace("&quot;", '')
+                        shizasent = shizasent.replace("&amp;", "")
+                        shizasent = shizasent.replace("&gt;", ">")
                         shizasent = shizasent.replace("end", "")
                         shizasent = shizasent.lower()
                         print("shizasent = " + shizasent + ".")
