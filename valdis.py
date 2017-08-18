@@ -177,7 +177,7 @@ def main():
                 else:
                     vk.messages.send(peer_id=event.peer_id, message="иди нахуй!!!")
             else:
-                if str(event.user_id) in banusers or event.user_id == "441815332":
+                if str(event.user_id) in banusers or event.user_id == "441815332" or "http://" in event.text or ".com" in event.text  or ".ru" in event.text or "/" in event.text:
                     print(event.user_id + " ignore!")
                 else:
                     try:
