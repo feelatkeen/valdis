@@ -20,6 +20,7 @@ curseconds = (curtime-datetime.datetime(1970,1,1)).total_seconds()
 from vk_api.longpoll import VkLongPoll, VkEventType
 spamwait = sched.scheduler(time.time, time.sleep)
 def antispam(sc):
+    global spampoint
     spampoint = 0
     spamwait.enter(10, 1, antispam, (sc,))
 def auth_handler():
