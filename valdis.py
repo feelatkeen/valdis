@@ -23,7 +23,7 @@ def antispam():
     global spampoint
     spampoint = 0
     threading.Timer(10, antispam).start()
-    antispam()
+
 antispam()
 def auth_handler():
     vladikkey = input("Введи код)))))): ")
