@@ -6,6 +6,7 @@ from gtts import gTTS
 import os
 from valdismarkov import *
 import datetime
+import sched
 import pdb
 print("VK API loaded!")
 spampoint = 0
