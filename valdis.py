@@ -2,7 +2,7 @@
 import vk_api
 import random
 import time
-import theader
+import threading
 from gtts import gTTS
 import os
 from valdismarkov import *
@@ -19,11 +19,10 @@ bannedusers.close()
 curtime = datetime.datetime.now()
 curseconds = (curtime-datetime.datetime(1970,1,1)).total_seconds()
 from vk_api.longpoll import VkLongPoll, VkEventType
-spamwait = sched.scheduler(time.time, time.sleep)
 def antispam(sc):
     global spampoint
     spampoint = 0
-    spamwait.Threading(10, antispam).start()
+    threading.Timer(10, antispam).start()
     antispam()
 antispam()
 def auth_handler():
