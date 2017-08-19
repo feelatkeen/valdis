@@ -19,7 +19,7 @@ bannedusers.close()
 curtime = datetime.datetime.now()
 curseconds = (curtime-datetime.datetime(1970,1,1)).total_seconds()
 from vk_api.longpoll import VkLongPoll, VkEventType
-def antispam(sc):
+def antispam():
     global spampoint
     spampoint = 0
     threading.Timer(10, antispam).start()
