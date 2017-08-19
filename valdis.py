@@ -2,11 +2,11 @@
 import vk_api
 import random
 import time
+import theader
 from gtts import gTTS
 import os
 from valdismarkov import *
 import datetime
-import sched
 import pdb
 print("VK API loaded!")
 spampoint = 0
@@ -23,7 +23,9 @@ spamwait = sched.scheduler(time.time, time.sleep)
 def antispam(sc):
     global spampoint
     spampoint = 0
-    spamwait.enter(10, 1, antispam, (sc,))
+    spamwait.Threading(10, antispam).start()
+    antispam()
+antispam()
 def auth_handler():
     vladikkey = input("Введи код)))))): ")
     remember_device = True
