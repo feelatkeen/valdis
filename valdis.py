@@ -185,6 +185,14 @@ def main():
                         banread.close()
                     else:
                         vk.messages.send(peer_id=event.peer_id, message="иди нахуй!!!")
+                elif event.text.lower() == "шизик словарь":
+                    if event.user_id not in banusers:
+                        upload = vk_api.VkUpload(vk_session)
+                        sentprikol = upload.document(
+                            os.path.dirname(os.path.realpath(__file__)) + "/shiza.txt"
+                                    )
+                        print(sentprikol)
+                        vk.messages.send(peer_id=event.peer_id, attachment="doc"+str(sentprikol[0]['owner_id'])+ "_" + str(sentprikol[0]['id']), message="Вот весь словарь:")
                 else:
                     if str(event.user_id) in banusers or event.user_id == "441815332" or any(ext in event.text for ext in bannedword):
                         print(event.user_id + " ignore!")
