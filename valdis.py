@@ -104,7 +104,7 @@ def main():
                                 except:
                                     curseconds = curseconds + 24 * 60 * 60
                                     pass
-                            if event.text.lower() == "шизик шизофазия вслух":
+                            elif event.text.lower() == "шизик шизофазия вслух":
                                 shizasent = gTTS(text=shizasent, lang='ru', slow=False)
                                 shizasent.save("shiza.mp3")
                                 upload = vk_api.VkUpload(vk_session)
@@ -113,6 +113,8 @@ def main():
                                     )
                                 print(sentprikol)
                                 vk.messages.send(peer_id=event.peer_id, attachment="doc"+str(sentprikol[0]['owner_id'])+ "_" + str(sentprikol[0]['id']))
+                            else:
+                                vk.messages.send(peer_id=event.peer_id, message="ЧТО.")
                                 
                 elif event.text.lower() == "шизик выпей амнезиак":
                     if event.user_id in adminusers:
