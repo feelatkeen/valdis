@@ -70,11 +70,7 @@ def main():
                     vk.messages.send(peer_id=event.peer_id, message="---START---\nшизик бот v1.0\ntype: BETA\ncodename: VALDIS\nprefix: шизик\nКоманды:\nшизофазия - бред шизика (слова он черпает от вас!)\nшизофазия вслух - голос шизика! (тоже самое что и шизофазия но в виде голосового сообщения)\nдобавь меня - бот вас добавить (сначала киньте заявку)\nдонат - все деньги идут на хостинг! а еще вас пропустят в рай без очереди ;)\n---END---")
                 elif event.text.lower() == "шизик донат":
                     vk.messages.send(peer_id=event.peer_id, message="Если у тебя есть желание задонатить то:\nhttp://www.donationalerts.ru/r/feelatkeen")
-                elif "шизик шизофазия: " in event.text.lower(): 
-                    vk.messages.send(peer_id=event.peer_id, message='шизик шизофазия через двоеточие machine broke')
-                elif event.text.lower() == "шизик шизофазия помощь":
-                    vk.messages.send(peer_id=event.peer_id, message="бот набирается слов от вас и несет хуйню")
-                elif "шизик шиз" in event.text.lower():
+                elif "шизик ш" in event.text.lower():
                     loadwordlist = open("shiza.txt", "r+")
                     wordstring = loadwordlist.read().lower()
                     loadwordlist.close()
