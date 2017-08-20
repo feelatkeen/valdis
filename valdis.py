@@ -114,7 +114,7 @@ def main():
                                 print(sentprikol)
                                 vk.messages.send(peer_id=event.peer_id, attachment="doc"+str(sentprikol[0]['owner_id'])+ "_" + str(sentprikol[0]['id']))
                             else:
-                                vk.messages.send(peer_id=event.peer_id, message="ЧТО.")
+                                vk.messages.send(peer_id=event.peer_id, message='ЧТО. правильно "шизик шизофазия" дибил...')
                                 
                 elif event.text.lower() == "шизик выпей амнезиак":
                     if event.user_id in adminusers:
