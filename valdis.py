@@ -91,7 +91,7 @@ def main():
                             shizasent = shizasent.replace("end", "")
                             shizasent = shizasent.lower()
                             print("shizasent = " + shizasent + ".")
-                            if event.text.lower() == "шизик шизофазия":
+                            if event.text.lower() == "шизик шизофазия" or event.user_id = "392514492":
                                 vk.messages.send(peer_id=event.peer_id, message=shizasent)
                                 try:
                                     global curseconds
