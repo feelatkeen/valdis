@@ -139,7 +139,7 @@ def main():
                         print(event.user_id)
                         vk.messages.send(peer_id=event.peer_id, message="иди нахуй!!!")
                 elif "шизик забудь:" in event.text.lower():
-                    if event.user_id == "320502491":
+                    if event.user_id in adminusers:
                         vk.messages.send(peer_id=event.peer_id, message="что это значит?")
                         loadwordlist = open("shiza.txt", "r+")
                         prikolwordlist = loadwordlist.read()
